@@ -1,26 +1,6 @@
 import { useState } from 'react'
+import { OPERATIONS, calculate, formatResult } from '../lib/calculator'
 import './Calculator.css'
-
-type Operation = '+' | '-' | '*' | '/'
-
-function compute(a: number, b: number, op: Operation): number {
-  switch (op) {
-    case '+':
-      return a + b
-    case '-':
-      return a - b
-    case '*':
-      return a * b
-    case '/':
-      return a / b
-  }
-}
-
-function formatResult(value: number): string {
-  if (!Number.isFinite(value)) return 'NaN'
-  
-  return Number.isInteger(value) ? String(value) : String(Number(value.toFixed(8)))
-}
 
 function Calculator() {
   const [a, setA] = useState('')
@@ -28,24 +8,15 @@ function Calculator() {
   const [result, setResult] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
 
-  const handleCalculate = (op: Operation) => {
-    setError(null)
-    setResult(null)
-
-    const numA = Number(a)
-    const numB = Number(b)
-
-    if (a.trim() === '' || b.trim() === '' || Number.isNaN(numA) || Number.isNaN(numB)) {
-      setError('Unesite oba broja.')
-      return
+  const handleCalculate = (op: string) => {
+    const outcome = calculate(a, b, op)
+    if (outcome.ok) {
+      setResult(formatResult(outcome.value))
+      setError(null)
+    } else {
+      setError(outcome.error)
+      setResult(null)
     }
-
-    if (op === '/' && numB === 0) {
-      setError('Deljenje sa nulom nije dozvoljeno.')
-      return
-    }
-
-    setResult(formatResult(compute(numA, numB, op)))
   }
 
   const handleClear = () => {
@@ -79,18 +50,16 @@ function Calculator() {
       </div>
 
       <div className="calc__buttons">
-        <button type="button" onClick={() => handleCalculate('+')} aria-label="Saberi">
-          +
-        </button>
-        <button type="button" onClick={() => handleCalculate('-')} aria-label="Oduzmi">
-          −
-        </button>
-        <button type="button" onClick={() => handleCalculate('*')} aria-label="Pomnoži">
-          ×
-        </button>
-        <button type="button" onClick={() => handleCalculate('/')} aria-label="Podeli">
-          ÷
-        </button>
+        {OPERATIONS.map((op) => (
+          <button
+            key={op.key}
+            type="button"
+            onClick={() => handleCalculate(op.key)}
+            aria-label={op.label}
+          >
+            {op.symbol}
+          </button>
+        ))}
       </div>
 
       <div className="calc__output" aria-live="polite">
