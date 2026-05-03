@@ -15,9 +15,9 @@ UI sadrži dva input polja za unos brojeva, dugmad za operacije i prikaz rezulta
 
 ## Live verzija
 
-[https://vite-react-calculator.vercel.app](https://vite-react-calculator.vercel.app)
+[Live verzija](https://vite-react-calculator-nine.vercel.app/)
 
-> Zameniti link iznad konkretnim Vercel URL-om nakon deployment-a.
+
 
 ## Tehnologije
 
