@@ -1,6 +1,6 @@
 # vite-react-calculator
 
-Mini kalkulator napravljen u **React + Vite + TypeScript** okruženju, kao deo domaćeg zadatka iz predmeta *Nadzor i kontrola u DS. Cloud okruženje*.
+Mini kalkulator napravljen u **React + Vite + TypeScript** okruženju, kao deo domaćeg zadatka iz predmeta Osnove distribuiranog programiranja.
 
 ## Opis projekta
 
@@ -55,10 +55,10 @@ Aplikacija je deploy-ovana na [Vercel](https://vercel.com) sa automatskim CI/CD-
 vite-react-calculator/
 ├── src/
 │   ├── components/
-│   │   ├── Calculator.tsx     # UI shell — owns input state, renders inputs/buttons/result
+│   │   ├── Calculator.tsx    
 │   │   └── Calculator.css
 │   ├── lib/
-│   │   └── calculator.ts      # Domain logic — operations registry, parse, validation, calculate
+│   │   └── calculator.ts     
 │   ├── App.tsx
 │   ├── App.css
 │   ├── main.tsx
