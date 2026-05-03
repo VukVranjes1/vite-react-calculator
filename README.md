@@ -21,7 +21,7 @@ UI sadrži dva input polja za unos brojeva, dugmad za operacije i prikaz rezulta
 
 ## Tehnologije
 
-- [Vite](https://vitejs.dev/) 5
+- [Vite](https://vitejs.dev/) 7
 - [React](https://react.dev/) 18
 - [TypeScript](https://www.typescriptlang.org/) 5
 
@@ -53,11 +53,12 @@ Aplikacija je deploy-ovana na [Vercel](https://vercel.com) sa automatskim CI/CD-
 
 ```
 vite-react-calculator/
-├── public/
 ├── src/
 │   ├── components/
-│   │   ├── Calculator.tsx
+│   │   ├── Calculator.tsx     # UI shell — owns input state, renders inputs/buttons/result
 │   │   └── Calculator.css
+│   ├── lib/
+│   │   └── calculator.ts      # Domain logic — operations registry, parse, validation, calculate
 │   ├── App.tsx
 │   ├── App.css
 │   ├── main.tsx
